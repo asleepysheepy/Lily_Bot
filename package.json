@@ -1,16 +1,28 @@
 {
   "name": "lily_bot",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A greeting and conversation bot for MelbNaNo.",
-  "main": "index.js",
+  "main": "dist/index.js",
   "dependencies": {
-    "discord.js": "^12.5.3",
-    "sqlite3": "^5.0.2",
+    "discord.js": "^13.4.0",
+    "pg": "^8.7.1",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.2.41",
     "winston": "^3.3.3"
   },
+  "devDependencies": {
+    "@tsconfig/node16": "^1.0.2",
+    "@types/node": "^17.0.5",
+    "dotenv": "^10.0.0",
+    "ts-standard": "^11.0.0",
+    "typescript": "^4.5.4"
+  },
   "scripts": {
-    "start": "node index.js",
-    "test": "node tests.js"
+    "build": "tsc",
+    "lint": "ts-standard",
+    "lint:fix": "ts-standard --fix",
+    "start": "tsc && node -r dotenv/config .",
+    "typeorm": "tsc && node -r dotenv/config ./node_modules/typeorm/cli.js"
   },
   "repository": {
     "type": "git",
@@ -21,5 +33,8 @@
   "bugs": {
     "url": "https://github.com/lisushka/Lily_Bot/issues"
   },
-  "homepage": "https://github.com/lisushka/Lily_Bot#readme"
+  "homepage": "https://github.com/lisushka/Lily_Bot#readme",
+  "ts-standard": {
+    "report": "stylish"
+  }
 }

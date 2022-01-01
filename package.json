@@ -4,6 +4,7 @@
   "description": "A greeting and conversation bot for MelbNaNo.",
   "main": "dist/index.js",
   "dependencies": {
+    "@nestjs/class-validator": "^0.13.3",
     "discord.js": "^13.4.0",
     "pg": "^8.7.1",
     "reflect-metadata": "^0.1.13",

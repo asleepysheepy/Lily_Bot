@@ -16,9 +16,8 @@ export class GuildConfig extends BaseModel {
    * The message that should be sent to new users when they join the
    * server.
    *
-   * Allows the following subsitution strings:
-   * {{user_name}}
-   * {{server_name}}
+   * See `MessageFormatService.patterns` for a list of substitution
+   * patterns.
    */
   @Column({ name: 'welcome_message', type: 'varchar' })
   welcomeMessage?: string

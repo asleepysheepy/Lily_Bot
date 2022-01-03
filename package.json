@@ -2,9 +2,12 @@
   "name": "lily_bot",
   "version": "2.0.0",
   "description": "A greeting and conversation bot for MelbNaNo.",
-  "main": "dist/index.js",
+  "main": "dist/src/index.js",
   "dependencies": {
+    "@discordjs/builders": "^0.11.0",
+    "@discordjs/rest": "^0.2.0-canary.0",
     "@nestjs/class-validator": "^0.13.3",
+    "discord-api-types": "^0.26.1",
     "discord.js": "^13.4.0",
     "pg": "^8.7.1",
     "reflect-metadata": "^0.1.13",
@@ -20,6 +23,7 @@
   },
   "scripts": {
     "build": "tsc",
+    "deploy-commands": "tsc && node -r dotenv/config dist/src/deploy-commands.js",
     "lint": "ts-standard",
     "lint:fix": "ts-standard --fix",
     "start": "tsc && node -r dotenv/config .",

@@ -1,4 +1,5 @@
-import { ApplicationCommandData, Client, CommandInteraction } from 'discord.js'
+import { SlashCommandBuilder } from '@discordjs/builders'
+import { Client, CommandInteraction } from 'discord.js'
 
 /**
  * Command executable by the command handler.
@@ -7,7 +8,7 @@ export interface Command {
   /**
    * Data used to create the command with discord
    */
-  data: ApplicationCommandData
+  data: SlashCommandBuilder
 
   /**
    * Function containing the command's logic.

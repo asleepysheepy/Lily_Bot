@@ -1,25 +1,30 @@
-import { Client, Message } from 'discord.js'
 import { Commands } from '../commands'
+import { REST } from '@discordjs/rest'
+import { Routes } from 'discord-api-types/v9'
+import { Snowflake } from 'discord.js'
 
-/**
- * A function to redeploy all the bots commands
- *
- * @param message The message which triggered the redeploy
- * @param client The bot's client instance.
- */
-async function handleDeploy (message: Message, client: Client): Promise<void> {
-  // Ignore if not the correct deploy message
-  if (message.content !== ('deployCommands')) { return }
+function canUserDeploy (userId: Snowflake): boolean {
+  if (process.env.USERS_WHO_CAN_DEPLOY == null) { return false }
+  if (!process.env.USERS_WHO_CAN_DEPLOY.includes(userId)) { return false }
 
-  // Ignore if the user doesn't have deploy permissions
-  if (process.env.USERS_WHO_CAN_DEPLOY == null) { return }
-  if (!process.env.USERS_WHO_CAN_DEPLOY.includes(message.author.id)) { return }
+  return true
+}
 
-  // Register commands
-  const commandData = Commands.commandList.map((c) => c.data)
-  client.application?.commands.set(commandData)
+async function deployCommands (token: string, clientId: string, guildId?: Snowflake): Promise<void> {
+  // Set the bot token
+  const rest = new REST({ version: '9' }).setToken(token)
+
+  // Transform command data to be sent to Discord
+  const commandData = Commands.commandList.map(command => command.data.toJSON())
+
+  if (guildId == null) {
+    await rest.put(Routes.applicationCommands(clientId), { body: commandData })
+  } else {
+    await rest.put(Routes.applicationGuildCommands(clientId, guildId), { body: commandData })
+  }
 }
 
 export const CommandService = {
-  handleDeploy
+  canUserDeploy,
+  deployCommands
 }

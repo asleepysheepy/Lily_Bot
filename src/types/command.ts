@@ -1,5 +1,10 @@
-import { SlashCommandBuilder } from '@discordjs/builders'
+import { SlashCommandBuilder, SlashCommandSubcommandBuilder, SlashCommandSubcommandGroupBuilder, SlashCommandSubcommandsOnlyBuilder } from '@discordjs/builders'
 import { Client, CommandInteraction } from 'discord.js'
+
+type CommandData = SlashCommandBuilder
+| SlashCommandSubcommandBuilder
+| SlashCommandSubcommandGroupBuilder
+| SlashCommandSubcommandsOnlyBuilder
 
 /**
  * Command executable by the command handler.
@@ -8,7 +13,7 @@ export interface Command {
   /**
    * Data used to create the command with discord
    */
-  data: SlashCommandBuilder
+  data: CommandData
 
   /**
    * Function containing the command's logic.

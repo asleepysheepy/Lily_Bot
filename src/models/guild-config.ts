@@ -20,14 +20,14 @@ export class GuildConfig extends BaseModel {
    * patterns.
    */
   @Column({ name: 'welcome_message', type: 'varchar' })
-  welcomeMessage?: string
+  welcomeMessage?: string | null
 
   /**
    * The ID of the channel where welcome messages should be sent
    */
   @Column({ name: 'welcome_message_channel_id', type: 'varchar' })
   @MaxLength(30)
-  welcomeMessageChannelId?: Snowflake
+  welcomeMessageChannelId?: Snowflake | null
 
   /**
    * Finds the config object for a given guild id.

@@ -31,7 +31,7 @@ async function deployCommands (message: Message, guildId: Snowflake): Promise<vo
   }
 
   // Register the commands with discord.
-  await CommandService.deployCommands(token, clientId, guildId)
+  CommandService.deployCommands(token, clientId, guildId)
     .then(async () => await message.reply('Successfully deployed commands'))
     .catch(async () => await message.reply('Unable to deploy commands'))
 }

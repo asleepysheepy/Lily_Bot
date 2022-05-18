@@ -5,7 +5,7 @@ import { GuildConfig } from '../../models'
 
 export const ConfigWelcomeMessageChannelCommand: Command = {
   data: new SlashCommandSubcommandGroupBuilder()
-    .setName('welcomeMessageChannel')
+    .setName('welcomeChannel')
     .setDescription('Configure the channel where welcome messages are posted.')
     .addSubcommand((subcommand) => (
       subcommand.setName('set')

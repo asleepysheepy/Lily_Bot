@@ -13,7 +13,7 @@ const commands = [
 export const ConfigCommand: Command = {
   data: new SlashCommandBuilder()
     .setName('config')
-    .setDescription('')
+    .setDescription('Config Command')
     .addSubcommandGroup(ConfigWelcomeMessageChannelCommand.data as SlashCommandSubcommandGroupBuilder)
     .addSubcommandGroup(ConfigWelcomeMessageCommand.data as SlashCommandSubcommandGroupBuilder),
   execute: async (interaction: CommandInteraction, client: Client): Promise<void> => {
